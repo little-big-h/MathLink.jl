@@ -12,6 +12,8 @@ include("consts.jl")
 typealias Env Ptr{Void}
 typealias Link Ptr{Void}
 
+using Compat
+
 
 function find_lib_ker()    
     @static if is_apple()

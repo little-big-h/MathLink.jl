@@ -28,6 +28,10 @@ const aliases =
        :+   => :Plus,
        :-   => :Subtract,
        :%   => :Mod,
+       :<   => :Less,
+       :>   => :Greater,
+       :(==)   => :Equal,
+       :(=)   => :Set,
        :log => :Log,
        :exp => :Exp,
        :sin => :Sin,
@@ -49,6 +53,8 @@ function to_mma(x::Expr)
   elseif x.head == :ref
     MExpr{:Part}(map(to_mma, x.args))
   elseif x.head == :cell1d
+    MExpr{:List}(x.args)
+  elseif x.head == :vect
     MExpr{:List}(x.args)
   else
     error("Unsupported $(x.head) expression.")
